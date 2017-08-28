@@ -177,6 +177,9 @@ footer {
   background-color: #fff;
   text-align: right;
   clear: both;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
 }
 
 #root {
@@ -184,11 +187,19 @@ footer {
   overflow-y: hidden;
 }
 
-.home, .about, .portfolio, .contact {
+.home {
   height: 100%;
 }
 
+.home, .about, .portfolio, .contact {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .fixed {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
   position: fixed;
   left: 0px;
   top: 0px;
@@ -203,14 +214,13 @@ footer {
 }
 
 .scroll {
+  position: absolute;
   margin-left: 330px;
   float: right;
   height: 100vh;
   background-image: url('./images/background.jpg');
   background-size: cover;
   vertical-align: top;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 .wrapper {
@@ -272,7 +282,6 @@ footer {
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 940px;
 }
 
 .home .welcome {
@@ -314,7 +323,7 @@ footer {
   text-align: center;
   letter-spacing: 2px;
   text-decoration: none;
-  max-width: 25%;
+  max-width: 50%;
 }
 
 .page-text {
@@ -424,6 +433,7 @@ footer {
   transform-style: preserve-3d;
   transition: transform 500ms;
   transform: scaleX(1) scaleY(1) scaleZ(1);
+  width: 100%;
 }
 
 .img-prof {
@@ -450,12 +460,11 @@ footer {
 
 .skill-text {
   overflow: hidden;
-  min-width: 180px;
+  min-width: 120px;
 }
 
 .hero {
   background-color: #292929;
-  max-height: 650px;
 }
 
 .skill {
@@ -480,6 +489,7 @@ footer {
   font-size: 13px;
   text-align: left;
   letter-spacing: 1px;
+  min-width: 200px;
 }
 
 .top {
@@ -577,4 +587,169 @@ footer {
 
 .contact-list {
   padding: 25% 0;
+}
+
+@keyframes blinking {
+  0%    { opacity: 0; }
+  50%   { opacity: 0; }
+  51%   { opacity: 1; }
+  100%  { opacity: 1; }
+}
+
+.transparent h1 {
+  min-width: 295px;
+}
+
+.transparent h1:after, .transparent p:after  {
+  content: '_';
+  animation: blinking 1.2s infinite;
+}
+
+.nav-icon {
+  display: none;
+  float: left;
+  width: 45px;
+  position: fixed;
+  margin: 20px 20px auto;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  z-index: 21;
+}
+
+.nav-icon span {
+  display: block;
+  position: absolute;
+  height: 9px;
+  width: 100%;
+  background: #d3d3d3;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+.nav-icon span:nth-child(1) {
+  top: 0px;
+}
+
+.nav-icon span:nth-child(2) {
+  top: 18px;
+}
+
+.nav-icon span:nth-child(3) {
+  top: 36px;
+}
+
+.nav-icon.open span:nth-child(1) {
+  top: 18px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+.nav-icon.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.nav-icon.open span:nth-child(3) {
+  top: 18px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+@media (max-width: 900px){
+  h4{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  h4 {
+    font-size: 14px;
+  }
+
+  footer .two-col {
+    width: 50%;
+  }
+
+  .wrapper{
+    display: none;
+  }
+
+  .fixed{
+    display: none;
+  }
+
+  .scroll{
+    margin: 0;
+    width: 100%;
+  }
+
+  .skill {
+    padding: 20px;
+  }
+
+  .skill .row {
+    margin: 0;
+    padding: 0;
+  }
+
+  .three-col {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .nav-icon{
+    display: block;
+  }
+
+}
+
+@media (max-width: 415px) {
+  h4 {
+    padding: 0;
+  }
+
+  .portfolio {
+    height: 63vh;
+  }
+
+  .button {
+    max-width: 70%;
+  }
+
+  .profile-text {
+    margin: 0 15px;
+  }
+
+  .contact-list {
+    padding: 0;
+  }
+
+  .contact-text {
+    text-align: center;
+  }
+
+  .two-col {
+    width: 100%;
+  }
 }
